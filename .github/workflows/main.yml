@@ -1,7 +1,23 @@
 name: CI
 
-on: [push]
-
+on: 
+  workflow_dispatch:
+    inputs:
+      qosFile:
+        description: "qos file to deploy"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - qos-ant-uat.json
+          - qos-staging-us.json
+      environment:
+        description: ""
+        required: true
+        type: choice
+        options:
+          - dev
+          - prod
 jobs:
   build:
     runs-on: ubuntu-latest
